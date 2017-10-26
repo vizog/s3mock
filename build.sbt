@@ -1,6 +1,6 @@
 name := "s3mock"
 
-version := "0.2.3"
+version := "0.2.4-ts"
 
 organization := "io.findify"
 
@@ -32,13 +32,7 @@ parallelExecution in Test := false
 
 publishMavenStyle := true
 
-publishTo := {
-  val nexus = "https://oss.sonatype.org/"
-  if (isSnapshot.value)
-    Some("snapshots" at nexus + "content/repositories/snapshots")
-  else
-    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
-}
+publishTo := Some("Bintray API Realm" at s"https://api.bintray.com/content/vizog/maven/s3mock/${version.value}")
 
 pomExtra := (
     <scm>
