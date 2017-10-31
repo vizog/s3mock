@@ -1,3 +1,5 @@
+import com.typesafe.sbt.packager.docker._
+
 name := "s3mock"
 
 version := "0.2.4-ts"
@@ -46,3 +48,17 @@ pomExtra := (
         <url>http://www.dfdx.me</url>
       </developer>
     </developers>)
+
+enablePlugins(JavaAppPackaging)
+
+maintainer in Docker := "Document pipeline team"
+packageSummary in Docker := "S3moock"
+packageDescription := "Mock Service For S3"
+dockerRepository := Some("vizog")
+dockerUpdateLatest := true
+dockerCommands += Cmd("USER", "root")
+dockerCommands ++= Seq(
+  ExecCmd("RUN", "apt-get", "update"),
+  ExecCmd("RUN", "apt-get", "install", "-y", "telnet", "vim", "net-tools")
+)
+dockerExposedPorts := Seq(8001)
