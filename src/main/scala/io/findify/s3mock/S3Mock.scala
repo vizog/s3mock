@@ -41,7 +41,7 @@ class S3Mock(port:Int, provider:Provider)(implicit system:ActorSystem = ActorSys
             DeleteObjects().route(bucket)
           )
         } ~ parameterMap { params =>
-          path(RemainingPath) { key =>
+          path(Remaining) { key =>
             concat(
               GetObject().route(bucket, key.toString(), params),
               CopyObject().route(bucket, key.toString()),
