@@ -53,27 +53,12 @@ pomExtra := (
       </developer>
     </developers>)
 
-enablePlugins(DockerPlugin)
-assemblyJarName in assembly := "s3mock.jar"
-mainClass in assembly := Some("io.findify.s3mock.Main")
-test in assembly := {}
+enablePlugins(JavaAppPackaging)
+//enablePlugins(DockerPlugin)
 
-dockerfile in docker := new Dockerfile {
-  from("openjdk:9.0.1-11-jre-slim")
-  expose(8001)
-  add(assembly.value, "/app/s3mock.jar")
-  entryPoint("java", "-Xmx128m", "-jar", "/app/s3mock.jar")
-}
-imageNames in docker := Seq(
-  ImageName(s"findify/s3mock:${version.value.replaceAll("\\+", "_")}"),
-  ImageName(s"findify/s3mock:latest")
-)
-
-/*enablePlugins(JavaAppPackaging)
-
-maintainer in Docker := "S3mock"
-packageSummary in Docker := "S3Mock"
+maintainer in Docker := "Document pipeline team"
+packageSummary in Docker := "S3moock"
 packageDescription := "Mock Service For S3"
+dockerRepository := Some("vizog")
 dockerUpdateLatest := true
 dockerExposedPorts := Seq(8001)
-*/
