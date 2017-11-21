@@ -14,7 +14,7 @@ import io.findify.s3mock.S3Mock;
  */
 public class JavaBuilderExample {
     public static void main(String[] args) {
-        S3Mock api = new S3Mock.Builder().withPort(8001).withInMemoryBackend().build();
+        S3Mock api = new S3Mock.Builder().withPort(8003).withInMemoryBackend().build();
         api.start();
         AmazonS3 client = AmazonS3ClientBuilder
                 .standard()

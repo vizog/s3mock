@@ -102,7 +102,7 @@ class FileProvider(dir:String) extends Provider with LazyLogging {
     val bucketFile = File(s"$dir/$bucket")
     if (!bucketFile.exists) throw NoSuchBucketException(bucket)
     val file = File(s"$dir/.mp/$bucket/$key/$uploadId/$partNumber")
-    logger.debug(s"uploading multipart chunk $partNumber for s3://$bucket/$key")
+    logger.debug(s"uploading multipart chunk $partNumber for s3://$bucket/$key in $dir")
     file.writeByteArray(data)(OpenOptions.default)
   }
   override def putObjectMultipartComplete(bucket:String, key:String, uploadId:String, request:CompleteMultipartUpload) = {
