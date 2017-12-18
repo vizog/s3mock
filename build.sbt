@@ -57,6 +57,7 @@ enablePlugins(JavaAppPackaging)
 //enablePlugins(DockerPlugin)
 
 maintainer in Docker := "Document pipeline team"
+version in Docker := "0.2.4.1"
 packageSummary in Docker := "S3moock"
 packageDescription := "Mock Service For S3"
 dockerRepository := Some("vizog")
